@@ -1,6 +1,6 @@
-def only_even(numbers):
-    print ([n for n in numbers if n % 2 == 0])
+def is_even(x: int) -> bool:
+    return True if x % 2 ==0 else False
 
-numbers = list(range(10,20, 1))
-print(numbers)
-only_even(numbers)
+is_even = is_even(4)
+
+print ('Liczba parzysta' if is_even == True else 'Liczba nieparzysta')

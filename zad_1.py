@@ -1,6 +1,5 @@
-def print_names(names):
-    for name in names:
-        print(name)
+def welcome(name: str, surname: str) -> str:
+    return f"Cześć {name} {surname}!"
 
-names = ['Anna', 'Maciek', 'Krzysztof', 'Stanisław', 'Zuzanna']
-print_names(names)
+welcome = welcome('Kamil', "Nowak")
+print(welcome)
