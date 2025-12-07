@@ -1,4 +1,5 @@
 def multiply(x: int, y: int) -> int:
-    return x*y
+    return x * y
 
-print(multiply(2,6))
+
+print(multiply(2, 6))

@@ -1,5 +1,7 @@
-import requests
 from typing import Optional
+
+import requests
+
 
 class Brewery:
     def __init__(
@@ -17,7 +19,7 @@ class Brewery:
         longitude: Optional[float],
         latitude: Optional[float],
         phone: Optional[str],
-        website_url: Optional[str]
+        website_url: Optional[str],
     ):
         self.id = id
         self.name = name
@@ -33,7 +35,6 @@ class Brewery:
         self.latitude = latitude
         self.phone = phone
         self.website_url = website_url
-
 
     def __str__(self):
         return (
@@ -57,10 +58,7 @@ class Brewery:
 
 def fetch_breweries(city: Optional[str] = None) -> list[Brewery]:
     url = "https://api.openbrewerydb.org/v1/breweries"
-    params = {
-        "page": 1,
-        "per_page": 20
-    }
+    params = {"page": 1, "per_page": 20}
     if city:
         params["by_city"] = city
     try:
@@ -84,7 +82,7 @@ def fetch_breweries(city: Optional[str] = None) -> list[Brewery]:
                 longitude=float(b["longitude"]) if b.get("longitude") else None,
                 latitude=float(b["latitude"]) if b.get("latitude") else None,
                 phone=b.get("phone"),
-                website_url=b.get("website_url")
+                website_url=b.get("website_url"),
             )
             breweries.append(brewery)
 
@@ -94,6 +92,7 @@ def fetch_breweries(city: Optional[str] = None) -> list[Brewery]:
         print(f"Wystąpił błąd: {e}")
         return []
 
-breweries = fetch_breweries('Houston')
+
+breweries = fetch_breweries("Houston")
 for brewery in breweries:
     print(brewery.__str__())
