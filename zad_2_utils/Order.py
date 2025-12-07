@@ -5,11 +5,11 @@ from zad_2_utils.Student import Student
 
 class Order:
     def __init__(
-            self,
-            employee: Employee,
-            student: Student,
-            books: list[Book],
-            order_date: str,
+        self,
+        employee: Employee,
+        student: Student,
+        books: list[Book],
+        order_date: str,
     ):
         self.order_date = order_date
         self.books = books
@@ -19,6 +19,4 @@ class Order:
     def __str__(self):
         books_str = "\n ".join(str(b) for b in self.books)
 
-        return (
-            f"Order date: {self.order_date}\nEmployee -> {self.employee}\nStudent -> {self.student}\nBooks:\n {books_str}"
-        )
+        return f"Order date: {self.order_date}\nEmployee -> {self.employee}\nStudent -> {self.student}\nBooks:\n {books_str}"
