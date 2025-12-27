@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    container_name: people_counter_api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./test_photo:/app/test_photo:Z
+      - ./results:/app/results:Z
+      - ./yolo_model:/app/yolo_model:Z
+    environment:
+      - FLASK_ENV=development
