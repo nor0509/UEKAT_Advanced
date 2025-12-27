@@ -36,6 +36,7 @@ def letterbox(img, new_shape=(640, 640), color=(114, 114, 114)):
 # zwraca liczbę ludzi (ilośc obiektów (długosc indices), dodany warunek class_id = 0 - tylko ludzie)
 def detect_objects(img_path, output_path, display_width=800):
 
+    print("Rozpoczynam proces detect_objects")
     frame = cv2.imread(img_path)
     if frame is None:
         print(" Error: Image not found or unable to read.")

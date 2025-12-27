@@ -5,8 +5,28 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./test_photo:/app/test_photo:Z
-      - ./results:/app/results:Z
-      - ./yolo_model:/app/yolo_model:Z
+      - ./test_photo:/app/test_photo:z
+    depends_on:
+      - rabbitmq
     environment:
-      - FLASK_ENV=development
+      - FLASK_APP=app.py
+
+  worker:
+    build: .
+#    container_name: people_counter_worker
+    volumes:
+      - ./test_photo:/app/test_photo:z
+      - ./processed:/app/processed:z
+      - ./yolo_model:/app/yolo_model:z
+    depends_on:
+      - rabbitmq
+    deploy:
+      replicas: 3
+    command: ["python", "worker.py"]
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: people_counter_rabbitmq
+    ports:
+      - "5672:5672" #python
+      - "15672:15672" #dashboard
