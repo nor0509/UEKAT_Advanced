@@ -19,7 +19,7 @@ Wymagane pakiety znajdują się w requirments.txt oraz instalują się automatyc
 #### Endpointy
 - GET	localhost:5000/tasks	Lista wszystkich zadań (wyniki analizy).
 - GET	localhost:5000/tasks/<id>	Szczegóły konkretnego zadania.
-- POST	localhost:5000/tasks/upload	Przesłanie pliku zdjęcia.
+- POST	localhost:5000/tasks/upload	Przesłanie pliku zdjęcia. (Test: curl -X POST -F "file=@<plik>.<rozszerzenie>" http://localhost:5000/tasks/upload)
 - GET	localhost:5000/tasks/process-url	Pobranie i analiza zdjęcia z linku URL (?url=<url>).
 - GET	localhost:5000/tasks/process-local/<file>	Analiza pliku lokalnego z serwera.
 
