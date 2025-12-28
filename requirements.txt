@@ -4,4 +4,3 @@ numpy
 pika
 psutil
 requests
-sqlite3
