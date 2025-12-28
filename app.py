@@ -96,7 +96,7 @@ def view_all_tasks():
     return jsonify(data)
 
 
-@app.route("/api/count_people", methods=["POST"])
+@app.route("/api/count_people", methods=["GET"])
 def count_people_get():
     img_url = request.args.get("url")
 
