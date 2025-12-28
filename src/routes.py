@@ -6,13 +6,12 @@ from flask import jsonify, request, Blueprint
 from messaging import send_to_queue, create_message
 from database import get_task_by_id, get_all_tasks, insert_db_new_task
 
-#sciaga
-#200 OK
-#202 Accepted (do kolejki)
-#400 Bad Request
-#404 Not Found
-#500 Internal Server Error
-
+# sciaga
+# 200 OK
+# 202 Accepted (do kolejki)
+# 400 Bad Request
+# 404 Not Found
+# 500 Internal Server Error
 
 
 api = Blueprint("api", __name__)
@@ -82,7 +81,8 @@ def create_task_local(filename):
     except Exception as e:
         return jsonify({"error": f"Błąd kolejki: {str(e)}"}), 500
 
-#zrobiłbym tu post, ale wymagania jasno wskazują na get
+
+# zrobiłbym tu post, ale wymagania jasno wskazują na get
 @api.route("/tasks/process-url", methods=["GET"])
 def create_task_url():
     img_url = request.args.get("url")
@@ -108,10 +108,7 @@ def create_task_url():
     try:
         send_to_queue(message)
 
-        return jsonify({
-            "message": "Zadanie przyjęte do realizacji",
-            "task_id": task_id,
-            "status": "queued"}), 202
+        return jsonify({"message": "Zadanie przyjęte do realizacji", "task_id": task_id, "status": "queued"}), 202
     except Exception as e:
         return jsonify({"error": f"Błąd kolejki: {str(e)}"}), 500
 
@@ -145,10 +142,7 @@ def create_task_upload():
             message = create_message(task_id, full_path)
             send_to_queue(message)
 
-            return jsonify({
-                "message": "Plik przesłany i zakolejkowany",
-                "task_id": task_id,
-                "filename": filename}), 202
+            return jsonify({"message": "Plik przesłany i zakolejkowany", "task_id": task_id, "filename": filename}), 202
         except Exception as e:
             return jsonify({"error": f"Błąd podczas zapisu: {str(e)}"}), 500
 

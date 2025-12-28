@@ -32,11 +32,11 @@ def callback(ch, method, properties, body):
         if task_id:
             update_db_task(None, task_id, is_error=True)
 
-    ch.basic_ack(delivery_tag=method.delivery_tag) #zmienaimy tag nawet jak error, bo by kolejkował w nieskończoność
+    ch.basic_ack(delivery_tag=method.delivery_tag)  # zmienaimy tag nawet jak error, bo by kolejkował w nieskończoność
 
 
 channel.basic_qos(prefetch_count=1)  # przyjmujemy 1 msg do pracy
-print('Działam i oczekuję...', flush=True)
+print("Działam i oczekuję...", flush=True)
 channel.basic_consume(queue=config.QUEUE_NAME, on_message_callback=callback)  # jak dostajemy msg to odpal callback
 
 try:

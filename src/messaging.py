@@ -4,16 +4,16 @@ import pika
 import json
 import config
 
+
 def get_rabbitmq_connection():
     while True:
         try:
-            connection = pika.BlockingConnection(
-                pika.ConnectionParameters(host=config.RABBITMQ_HOST)
-            )
+            connection = pika.BlockingConnection(pika.ConnectionParameters(host=config.RABBITMQ_HOST))
             return connection
         except pika.exceptions.AMQPConnectionError:
             print("RabbitMQ niegotowy. Czekam 5 sekund...", flush=True)
             time.sleep(5)
+
 
 def send_to_queue(task_data):
     try:
@@ -39,4 +39,3 @@ def send_to_queue(task_data):
 def create_message(task_id, full_path):
     message = {"task_id": task_id, "full_path": full_path}
     return message
-

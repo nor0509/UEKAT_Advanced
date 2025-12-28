@@ -55,7 +55,7 @@ def get_all_tasks():
     return [dict(row) for row in rows]
 
 
-def update_db_task(count, task_id, is_error = False):
+def update_db_task(count, task_id, is_error=False):
     with get_db_connection() as conn:
         if not is_error:
             sql = "UPDATE tasks SET status = ?, result = ? WHERE task_id = ?"
@@ -63,5 +63,5 @@ def update_db_task(count, task_id, is_error = False):
         else:
             sql = "UPDATE tasks SET status = ?, result = NULL WHERE task_id = ?"
             values = ("ERROR", count, task_id)
-        conn.execute(sql,values)
+        conn.execute(sql, values)
         conn.commit()

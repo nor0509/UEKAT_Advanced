@@ -14,8 +14,8 @@ for i in range(TOTAL_REQUESTS):
     try:
         response = requests.get(URL, timeout=TIMEOUT)
 
-        #200 (OK)
-        #202 (przyjęto do kolejki)
+        # 200 (OK)
+        # 202 (przyjęto do kolejki)
         if response.status_code in [200, 202]:
             print(f"[{i + 1}/{TOTAL_REQUESTS}] Sukces: {response.status_code} (Zadanie przyjęte)")
             success_count += 1

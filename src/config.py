@@ -1,6 +1,6 @@
 import os.path
 
-#const
+# const
 OUTPUT_DIR = "/app/volumes/processed"
 DB_DIR = "/app/volumes/db"
 DB_NAME = "tasks.db"
