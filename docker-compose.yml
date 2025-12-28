@@ -3,7 +3,8 @@ services:
     build: .
     command: python src/app.py
     volumes:
-      - .:/app:z
+#      używane w trakcie developmentu
+#      - .:/app:z
       - ./volumes/db:/app/volumes/db:z
       - ./volumes/uploads:/app/volumes/uploads:z
       - ./volumes/processed:/app/volumes/processed:z
@@ -18,7 +19,8 @@ services:
     build: .
     command: python src/worker.py
     volumes:
-      - .:/app:z
+#      używane w trakcie developmentu
+#      - .:/app:z
       - ./volumes/db:/app/volumes/db:z
       - ./volumes/uploads:/app/volumes/uploads:z
       - ./volumes/processed:/app/volumes/processed:z
