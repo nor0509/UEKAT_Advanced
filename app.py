@@ -13,6 +13,7 @@ BASE_DIR = "/app/test_photo"
 RABBITMQ_HOST = "rabbitmq"
 QUEUE_NAME = "task_queue"
 DB_PATH = "/app/db/tasks.db"
+UPLOAD_DIR = "/app/uploads"
 
 
 def send_to_queue(task_data):
@@ -150,10 +151,10 @@ def send_image():
             task_id = str(uuid.uuid4())
             safe_filename = f"upload_{task_id}{ext}"
 
-            upload_dir = "/app/uploads"
-            os.makedirs(upload_dir, exist_ok=True)
 
-            full_path = os.path.join(upload_dir, safe_filename)
+
+
+            full_path = os.path.join(UPLOAD_DIR, safe_filename)
 
             file.save(full_path)
 
@@ -173,7 +174,7 @@ def send_image():
 
 def init_db():
     os.makedirs("/app/db", exist_ok=True)
-
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute(
@@ -189,7 +190,6 @@ def init_db():
     )
     conn.commit()
     conn.close()
-
 
 if __name__ == "__main__":
     init_db()
