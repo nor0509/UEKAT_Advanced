@@ -8,6 +8,12 @@ Prosty system do zliczania osób na zdjęciach wykorzystujący:
 
 Aplikacja przetwarza zadania asynchronicznie przy użyciu workerów.
 
+Tworzy i inicjalizuje baze zapisującą wyniki zadań w  ```volumes/db/tasks.db'```
+
+Tworzy i przechowuje zdjęcia w:
+- ```volumes/upload``` - z endpointów tasks/upload oraz tasks/process-url
+- ```volumes/processed``` - wynikowe obrazki (z zaznaczonymi ludźmi)
+
 Wymagany jest zainstalowany Docker Compose.
 
 #### Instrukcja uruchomienia:
