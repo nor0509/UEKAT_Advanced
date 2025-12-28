@@ -5,6 +5,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
+      - .:/app:z
       - ./test_photo:/app/test_photo:z
     depends_on:
       - rabbitmq
@@ -15,6 +16,7 @@ services:
     build: .
 #    container_name: people_counter_worker
     volumes:
+      - .:/app:z
       - ./test_photo:/app/test_photo:z
       - ./processed:/app/processed:z
       - ./yolo_model:/app/yolo_model:z
