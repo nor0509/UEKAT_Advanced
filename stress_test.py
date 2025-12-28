@@ -1,7 +1,7 @@
 import requests
 
 # Konfiguracja
-URL = "http://192.168.0.83:5000/tasks/process-url?url=https://img.freepik.com/free-photo/people-posing-together-registration-day_23-2149096793.jpg?semt=ais_hybrid&w=740&q=80"
+URL = "http://localhost:5000/tasks/process-url?url=https://img.freepik.com/free-photo/people-posing-together-registration-day_23-2149096793.jpg?semt=ais_hybrid&w=740&q=80"
 TOTAL_REQUESTS = 1000
 TIMEOUT = 30.0
 
