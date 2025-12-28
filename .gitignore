@@ -207,5 +207,6 @@ marimo/_lsp/
 __marimo__/
 
 #foldery zapisujące wyniki
-uploads/
-processed/
+volumes/uploads/
+volumes/processed/
+volumes/db/

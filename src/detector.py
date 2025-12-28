@@ -1,16 +1,13 @@
-import os
-
+import config
 import cv2
 import numpy as np
 import time
 import psutil
 
-MODEL_NAME = "yolov8n.onnx"
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, MODEL_NAME)
-print(f"Ładowanie modelu: {model_path}")
-net = cv2.dnn.readNet(model_path)
-print(f"Załadowano model: {model_path}")
+
+print(f"Ładowanie modelu: {config.MODEL_PATH}")
+net = cv2.dnn.readNet(config.MODEL_PATH)
+print(f"Załadowano model: {config.MODEL_PATH}")
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 
 

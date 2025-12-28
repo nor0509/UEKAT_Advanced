@@ -1,34 +1,37 @@
 services:
   api:
     build: .
-    container_name: people_counter_api
-    ports:
-      - "5000:5000"
+    command: python src/app.py
     volumes:
       - .:/app:z
-      - ./test_photo:/app/test_photo:z
+      - ./volumes/db:/app/volumes/db:z
+      - ./volumes/uploads:/app/volumes/uploads:z
+      - ./volumes/processed:/app/volumes/processed:z
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONPATH=/app/src
     depends_on:
       - rabbitmq
-    environment:
-      - FLASK_APP=app.py
 
   worker:
     build: .
-#    container_name: people_counter_worker
+    command: python src/worker.py
     volumes:
       - .:/app:z
-      - ./test_photo:/app/test_photo:z
-      - ./processed:/app/processed:z
-      - ./yolo_model:/app/yolo_model:z
-    depends_on:
-      - rabbitmq
+      - ./volumes/db:/app/volumes/db:z
+      - ./volumes/uploads:/app/volumes/uploads:z
+      - ./volumes/processed:/app/volumes/processed:z
+      - ./models:/app/models:z
+    environment:
+      - PYTHONPATH=/app/src
     deploy:
       replicas: 3
-    command: ["python", "worker.py"]
+    depends_on:
+      - rabbitmq
 
   rabbitmq:
-    image: rabbitmq:3-management-alpine
-    container_name: people_counter_rabbitmq
+    image: rabbitmq:3-management
     ports:
-      - "5672:5672" #python
-      - "15672:15672" #dashboard
+      - "5672:5672"
+      - "15672:15672"
